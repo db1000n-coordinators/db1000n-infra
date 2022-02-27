@@ -19,3 +19,4 @@ main
 *.hcl
 terraform.tfstate
 .terraform.tfstate.lock.info
+*.tfstate.backup
