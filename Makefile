@@ -7,4 +7,4 @@ init:
 start:
 	terraform plan -out=db1000n.out && terraform apply "db1000n.out"
 destroy:
-	terraform apply "db1000n.out"
+	terraform destroy

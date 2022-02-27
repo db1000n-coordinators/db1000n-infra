@@ -7,10 +7,29 @@ terraform {
   }
 }
 
-variable "do_token" {}
-variable "pvt_key" {}
-variable "repo" {}
-variable "instance_counts" {}
+variable "do_token" {
+  type = string
+}
+
+variable "pvt_key" {
+  type = string
+  default = "~/.ssh/terraform"
+}
+
+variable "repo" {
+  type = string
+  default = "https://github.com/Arriven/db1000n"
+}
+
+variable "instance_counts" {
+  type = number
+  default = 1
+}
+
+variable "region" {
+  type = string
+  default = "nyc1"
+}
 
 provider "digitalocean" {
   token = var.do_token
@@ -24,7 +43,7 @@ data "digitalocean_ssh_key" "terraform" {
 resource "digitalocean_app" "db1000n" {
   spec {
     name   = "db1000n"
-    region = "nyc1"
+    region = var.region
 
     worker {
       name               = "db1000n-service"
